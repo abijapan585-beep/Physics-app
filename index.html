@@ -8,6 +8,11 @@
 <meta name="theme-color" content="#0F172A" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<script>
+window.onerror = function(msg, src, line) {
+  document.body.innerHTML = '<div style="color:#fff;padding:30px;font-size:14px;background:#0F172A;min-height:100vh;">ERROR: ' + msg + '<br><br>Line: ' + line + '<br>File: ' + src + '</div>';
+};
+</script>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
@@ -127,4 +132,4 @@
 <script src="firebase-config.js"></script>
 <script src="app.js"></script>
 </body>
-                                                        </html>
+</html>
