@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<title>Physics Classes</title>
+<link rel="manifest" href="manifest.json" />
+<meta name="theme-color" content="#0F172A" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, Roboto, Arial, sans-serif;
+    background: #0F172A;
+    color: #fff;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+  .screen { display: none; min-height: 100vh; }
+  .screen.active { display: block; }
+  #login-screen {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    padding: 28px;
+    min-height: 100vh;
+  }
+  #login-screen.active { display: flex; }
+  .title { font-size: 28px; font-weight: 700; text-align: center; margin-bottom: 6px; }
+  .subtitle { font-size: 14px; color: #94A3B8; text-align: center; margin-bottom: 36px; }
+  input {
+    background: #1E293B;
+    color: #fff;
+    border: 1px solid #334155;
+    border-radius: 10px;
+    padding: 14px 16px;
+    font-size: 16px;
+    margin-bottom: 14px;
+    width: 100%;
+  }
+  input::placeholder { color: #888; }
+  button {
+    background: #2563EB;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    padding: 15px;
+    font-size: 16px;
+    font-weight: 600;
+    width: 100%;
+    margin-top: 10px;
+  }
+  button:active { opacity: 0.8; }
+  #login-error { color: #F87171; font-size: 13px; margin-top: 10px; text-align: center; min-height: 16px; }
+  #list-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 55px 20px 16px 20px;
+    border-bottom: 1px solid #1E293B;
+  }
+  #list-header h1 { font-size: 22px; font-weight: 700; }
+  #logout-btn { color: #F87171; font-size: 14px; font-weight: 600; background: none; width: auto; padding: 4px; margin: 0; }
+  #video-list { padding: 16px; }
+  .video-card {
+    background: #1E293B;
+    border-radius: 12px;
+    margin-bottom: 14px;
+    overflow: hidden;
+  }
+  .video-card img { width: 100%; height: 180px; object-fit: cover; background: #334155; display: block; }
+  .video-card .card-title { padding: 12px; font-size: 15px; font-weight: 600; }
+  .empty-state { text-align: center; color: #94A3B8; padding: 60px 20px; }
+  #player-header {
+    display: flex;
+    align-items: center;
+    padding: 16px;
+  }
+  #back-btn { color: #60A5FA; font-size: 15px; font-weight: 600; background: none; width: auto; padding: 4px 14px 4px 0; margin: 0; }
+  #player-title { font-size: 15px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .video-wrap { position: relative; width: 100%; padding-top: 56.25%; background: #000; }
+  .video-wrap iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+  .loader { display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+  .spinner {
+    width: 36px; height: 36px;
+    border: 4px solid #334155;
+    border-top-color: #2563EB;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+</style>
+</head>
+<body>
+
+<div id="loading-screen" class="screen active loader"><div class="spinner"></div></div>
+
+<div id="login-screen" class="screen">
+  <div class="title">Physics Classes</div>
+  <div class="subtitle">Login to watch your recordings</div>
+  <input id="student-id" placeholder="Student ID" autocapitalize="off" />
+  <input id="password" placeholder="Password" type="password" />
+  <button id="login-btn">Login</button>
+  <div id="login-error"></div>
+</div>
+
+<div id="list-screen" class="screen">
+  <div id="list-header">
+    <h1>My Recordings</h1>
+    <button id="logout-btn">Logout</button>
+  </div>
+  <div id="video-list"></div>
+</div>
+
+<div id="player-screen" class="screen">
+  <div id="player-header">
+    <button id="back-btn">← Back</button>
+    <div id="player-title"></div>
+  </div>
+  <div class="video-wrap" id="video-wrap"></div>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+<script src="firebase-config.js"></script>
+<script src="app.js"></script>
+</body>
+                                                        </html>
